@@ -1,0 +1,284 @@
+** selector universal **/ * {
+    margin: 0;
+    padding: 0%;
+}
+
+/** estilos globales **/
+body {
+    font-family: 'Quicksand', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    column-gap: 20px;
+    row-gap: 10px;
+}
+
+
+/** button **/
+
+.button {
+
+    color: #AEADD2;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border-radius: 3px;
+    padding: 1px 2px;
+}
+
+/** icono wpp **/
+
+.wpp {
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+}
+
+/** header **/
+
+
+nav {
+    grid-area: nav;
+
+}
+
+header {
+    background-color: #AEADD2;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+}
+
+header .logo {
+    width: 80;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    
+}
+
+header nav ul li {
+    padding: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: black;
+
+}
+
+main {
+    grid-area: main;
+}
+
+/** Portada **/
+#portada {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#portada h1 {
+    text-align: center;
+    font-size: 2rem;
+
+}
+
+#portada p {
+    text-align: center;
+    font-size: 2rem;
+    max-width: 80%;
+    margin: 40px 0;
+}
+
+.marca {
+    font-weight: bold;
+}
+
+#portada a {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 200;
+    text-align: center;
+    display: inline-block;
+    margin-left: 10px
+}
+
+
+h2 {
+    color: #AEADD2
+}
+
+/** servicios **/
+
+#Servicios {
+    color: #f8f8f8;
+    margin-bottom: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+#Servicios h3 {
+    text-align: center;
+}
+
+#Servicios h2 {
+    text-align: center;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 60px;
+    max-width: 1487px;
+    
+}
+
+.cardServicio {
+    background-color: rgb(136, 134, 134);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    width: 250px;
+    padding: 30px;
+    margin: 0 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 40px;
+}
+
+
+/** footer **/
+
+footer {
+    background-color: rgb(168, 166, 166);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: footer;
+    padding: 30px 0;
+}
+
+footer h4 {
+    margin-bottom: 20px;
+}
+
+footer>div {
+    padding: 40px 0;
+}
+
+.footerEnlaces ul {
+    list-style: none;
+}
+
+.footerRedes {
+    width: 20%;
+}
+
+.footerRedes ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.footerEnlaces a {
+    text-decoration: none;
+    color: black;
+}
+
+.footerColumns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.newsletter form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.newsletter input {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+}
+
+.newsletter button {
+    margin-top: 15px;
+    border: none;
+}
+
+.copyright {
+    padding-top: 20px;
+    width: 100%;
+    border-top: 2px solid;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+
+/** Nosotros **/
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: lightcoral;
+
+}
+
+/** Tablet hasta 1024 **/
+@media (max-width: 1024px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+        column-gap: 20px;
+        row-gap: 10px;  
+    }
+    header nav ul { flex-direction: column;
+    }
+    .cardContainer{ flex-direction: column;}
+
+}
+
+/* mobile: hasta 768 */
+
+@media (max-width: 425px) {
+    body {
+        grid-template-columns: auto;
+        grid-template-rows: 150px 1fr 1fr 10%;
+        grid-template-areas:
+            " header "
+            " nav "
+            " main "
+            "footer ";
+        height: 140vh;
+    }
+    header nav ul { flex-direction: column; 
+    }
+    .cardContainer{ flex-direction: column;}
+}

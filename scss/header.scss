@@ -1,0 +1,36 @@
+
+
+
+
+header {
+    background-color: #AEADD2;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+
+
+}
+
+header .logo {
+    width: 80;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+
+}
+
+header nav ul li {
+    padding: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: black;
+
+}
