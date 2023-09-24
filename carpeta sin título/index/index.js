@@ -5,112 +5,82 @@ const productos = [
     { nombre: 'Castillo numero 1', precio: 2500 },
     { nombre: 'Castillo numero 2', precio: 2800 },
     { nombre: 'Granja', precio: 2700 },
-    { nombre: 'Casa', precio: 2000 },
+    { nombre: 'Casita', precio: 2000 },
 ];
 
-let carrito = [1,2,3,4];
+let carrito = [];
 
 const listaProductos = document.getElementById('listaProductos');
-
 const carritoLista = document.getElementById('carritoLista');
-
 const totalPagarElement = document.getElementById('totalPagar');
-
 const finalizarCompraBtn = document.getElementById('finalizarCompra');
-
 const Nohayproductos = document.getElementById('Nohayproductos');
 
 
 function actualizarCarrito() {
+  carritoLista.innerHTML = '';
 
-    carritoLista.innerHTML = 'Lista DE productos';
+  let totalPagar = 0;
 
-    let totalPagar = 0;
-    carrito.forEach(function(producto, index) {
-        totalPagar += producto.precio;
-        
-        const carritoItem = document.createElement('li');
-        carritoItem.className = 'list-group-item';
-        carritoItem.innerText = `${producto.nombre} - Precio: $${producto.precio.toFixed(2)}`;
+  carrito.forEach(function(producto, index) {
+      totalPagar += producto.precio;
 
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'btn btn-danger float-right ml-2';
-        deleteButton.innerText = 'Eliminar';
+      const carritoItem = document.createElement('li');
+      carritoItem.className = 'list-group-item';
+      carritoItem.innerText = `${producto.nombre} - Precio: $${producto.precio.toFixed(2)}`;
 
-        deleteButton.addEventListener('click', function() {
-            carrito.splice(index, 1);
-            actualizarCarrito();
-        });
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'btn btn-danger float-right ml-2';
+      deleteButton.innerText = 'Eliminar';
 
-        carritoItem.appendChild(deleteButton);
+      deleteButton.addEventListener('click', function() {
+          carrito.splice(index, 1);
+          actualizarCarrito();
+      });
 
-        carritoLista.appendChild(carritoItem);
-    });
+      carritoItem.appendChild(deleteButton);
 
-    totalPagarElement.innerText = totalPagar.toFixed(2);
+      carritoLista.appendChild(carritoItem);
+  });
 
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+  totalPagarElement.innerText = totalPagar.toFixed(2);
 
-  
-    if (carrito.length > 0) {
-      Nohayproductos.style.display = 'block';
-    } else {
-      Nohayproductos.style.display = 'none';
-    }
-    if (carrito.length > 0) {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+
+  if (carrito.length > 0) {
       Nohayproductos.style.display = 'block';
   } else {
-    Nohayproductos.style.display = 'none';
+      Nohayproductos.style.display = 'none';
   }
 }
 
 productos.forEach(function(producto) {
+  const listItem = document.createElement('li');
+  listItem.className = 'producto';
+  listItem.classList.add(producto.nombre.replace(/ /g, '-'));
 
-    const listItem = document.createElement('li');
-    listItem.className = 'Castillo numero 1';
-    listItem.className = 'Castillo numero 2';
-    listItem.className = 'Granja';
-    listItem.className = 'Casitas';
+  const addButton = document.createElement('button');
+  addButton.className = 'btn btn-success float-right';
+  addButton.innerText = 'Comprame';
 
-  
-    const addButton = document.createElement('button');
+  addButton.addEventListener('click', function() {
+      carrito.push(producto);
+      actualizarCarrito();
+  });
 
+  listItem.innerText = `${producto.nombre} - Precio: $${producto.precio.toFixed(2)}`;
+  listItem.appendChild(addButton);
 
-    addButton.addEventListener('comprame', (e) =>{
-        e.preventDefault();
-        Swal.fire({
-            icon: 'success',
-            title: 'Producto Agregado',
-            text: 'El producto se agrego',
-          })
-    });
-
-    addButton.className = 'btn btn-success float-right';
-    addButton.innerText = 'Comprame';
-
-    listItem.innerText = `${producto.nombre} - Precio: $${producto.precio.toFixed(2)}`;
-
-    
-    listItem.appendChild(addButton);
-
-    addButton.addEventListener('comprame', function() {
-        carrito.push(producto);
-        actualizarCarrito();
-    })
-    listaProductos.appendChild(listItem);
-    listItem.className = 'Castillo numero 1';
-    listItem.className = 'Castillo numero 2';
-    listItem.className = 'Granja';
-    listItem.className = 'Casitas';
+  listaProductos.appendChild(listItem);
 });
 
 finalizarCompraBtn.addEventListener('click', function() {
-    carrito = [];
-    actualizarCarrito();
+  carrito = [];
+  actualizarCarrito();
 });
 
 const carritoGuardado = localStorage.getItem('carrito');
 if (carritoGuardado) {
-    carrito = JSON.parse(carritoGuardado);
-    actualizarCarrito();
-  }
+  carrito = JSON.parse(carritoGuardado);
+  actualizarCarrito();
+}
